@@ -14,7 +14,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "MorningTrain\\LaravelContext\\": "src/"
+      "MorningTrain\\Laravel\\Context\\": "src/"
     }
   },
   "require": {

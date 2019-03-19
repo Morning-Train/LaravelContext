@@ -1,10 +1,10 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Routes;
+namespace MorningTrain\Laravel\Context\Plugins\Routes;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
-use MorningTrain\LaravelContext\Plugins\Localization\LocalizationPlugin;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\Plugins\Localization\LocalizationPlugin;
 
 class RoutesPlugin implements Pluginable
 {

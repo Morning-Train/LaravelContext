@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Views;
+namespace MorningTrain\Laravel\Context\Plugins\Views;
 
 class Registrar
 {

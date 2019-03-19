@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext;
+namespace MorningTrain\Laravel\Context;
 
 use Illuminate\Support\Facades\Facade;
 

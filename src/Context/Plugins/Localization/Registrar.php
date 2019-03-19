@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Localization;
+namespace MorningTrain\Laravel\Context\Plugins\Localization;
 
 use \Closure;
 

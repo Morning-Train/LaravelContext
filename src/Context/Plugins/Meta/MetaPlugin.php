@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Meta;
+namespace MorningTrain\Laravel\Context\Plugins\Meta;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
 
 class MetaPlugin implements Pluginable
 {

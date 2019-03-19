@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Assets;
+namespace MorningTrain\Laravel\Context\Plugins\Assets;
 
 class StylesheetRegistrar extends Registrar
 {

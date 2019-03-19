@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Meta;
+namespace MorningTrain\Laravel\Context\Plugins\Meta;
 
 class Registrar
 {

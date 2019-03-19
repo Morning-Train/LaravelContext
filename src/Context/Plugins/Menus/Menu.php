@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Menus;
+namespace MorningTrain\Laravel\Context\Plugins\Menus;
 
 use \Closure;
 

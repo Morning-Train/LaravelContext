@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Views;
+namespace MorningTrain\Laravel\Context\Plugins\Views;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
 
 class ViewsPlugin implements Pluginable
 {

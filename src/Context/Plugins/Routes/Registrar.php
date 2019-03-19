@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Routes;
+namespace MorningTrain\Laravel\Context\Plugins\Routes;
 
 use Illuminate\Routing\Router;
 

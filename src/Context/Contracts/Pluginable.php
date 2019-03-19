@@ -1,8 +1,8 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Contracts;
+namespace MorningTrain\Laravel\Context\Contracts;
 
-use MorningTrain\LaravelContext\ContextService;
+use MorningTrain\Laravel\Context\ContextService;
 
 interface Pluginable
 {

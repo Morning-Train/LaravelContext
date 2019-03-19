@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Assets;
+namespace MorningTrain\Laravel\Context\Plugins\Assets;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
 
 class AssetsPlugin implements Pluginable
 {

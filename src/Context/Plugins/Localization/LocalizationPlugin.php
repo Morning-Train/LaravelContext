@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Localization;
+namespace MorningTrain\Laravel\Context\Plugins\Localization;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
 
 class LocalizationPlugin implements Pluginable
 {

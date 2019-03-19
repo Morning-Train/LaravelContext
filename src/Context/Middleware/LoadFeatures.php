@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Middleware;
+namespace MorningTrain\Laravel\Context\Middleware;
 
 use \Closure;
-use MorningTrain\LaravelContext\Context;
+use MorningTrain\Laravel\Context\Context;
 
 class LoadFeatures
 {

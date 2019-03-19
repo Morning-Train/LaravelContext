@@ -1,9 +1,9 @@
 <?php
 
-namespace MorningTrain\LaravelContext\Plugins\Menus;
+namespace MorningTrain\Laravel\Context\Plugins\Menus;
 
-use MorningTrain\LaravelContext\ContextService;
-use MorningTrain\LaravelContext\Contracts\Pluginable;
+use MorningTrain\Laravel\Context\ContextService;
+use MorningTrain\Laravel\Context\Contracts\Pluginable;
 use \Closure;
 
 class MenusPlugin implements Pluginable
