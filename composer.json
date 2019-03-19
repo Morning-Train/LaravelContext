@@ -1,0 +1,23 @@
+{
+  "name": "morningtrain/laravel-context",
+  "type": "library",
+  "description": "A context helper package for Laravel",
+  "homepage": "http://morningtrain.dk/",
+  "license": "GNU General Public License v3.0",
+  "authors": [
+    {
+      "name": "Bjarne Bonde",
+      "email": "bb@morningtain.dk",
+      "homepage": "https://morningtrain.dk/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MorningTrain\\LaravelContext\\": "src/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.0"
+  }
+}
