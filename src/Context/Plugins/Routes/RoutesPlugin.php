@@ -22,6 +22,7 @@ class RoutesPlugin implements Pluginable
                 'baseUrl' => url(''),
                 'currentUrl' => request()->url(),
                 'currentRoute' => isset($currentRoute, $currentRoute->action['as']) ? $currentRoute->action['as'] : null,
+                'currentParameters' => $currentRoute->parameters,
                 'routes' => $this->getRegistrar()->getRoutesData()
             ];
         });
