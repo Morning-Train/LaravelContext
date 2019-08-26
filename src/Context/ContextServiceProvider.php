@@ -24,29 +24,36 @@ class ContextServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerPlugins();
-        $this->registerFeatures();
-        $this->loadFeatures();
+        $this->app->singleton(ContextService::class, function () {
+            return new ContextService();
+        });
     }
 
-    protected function registerPlugins()
+    public function boot(ContextService $context)
+    {
+        $this->registerPlugins($context);
+        $this->registerFeatures($context);
+        $this->loadFeatures($context);
+    }
+
+    protected function registerPlugins(ContextService $context)
     {
         foreach ($this->plugins as $plugin) {
-            Context::plugin($plugin);
+            $context->plugin($plugin);
         }
     }
 
-    protected function registerFeatures()
+    protected function registerFeatures(ContextService $context)
     {
         foreach ($this->contexts as $name => $class) {
-            Context::register($name, $class);
+            $context->register($name, $class);
         }
     }
 
-    protected function loadFeatures()
+    protected function loadFeatures(ContextService $context)
     {
         foreach ($this->load as $feature) {
-            Context::load($feature);
+            $context->load($feature);
         }
     }
 

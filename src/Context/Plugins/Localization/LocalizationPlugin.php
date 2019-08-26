@@ -16,8 +16,10 @@ class LocalizationPlugin implements Pluginable
             return $this->getRegistrar();
         });
 
-        $context->extend('localize', function (...$arguments) {
-            return $this->getRegistrar()->localize(...$arguments);
+        $context->extend('localize', function ($key, $value) {
+            return $value instanceof \Closure ?
+                $this->getRegistrar()->provide($key, $value) :
+                $this->getRegistrar()->localize($key, $value);
         });
     }
 

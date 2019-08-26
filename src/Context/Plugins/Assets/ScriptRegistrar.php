@@ -5,14 +5,17 @@ namespace MorningTrain\Laravel\Context\Plugins\Assets;
 class ScriptRegistrar extends Registrar
 {
 
-    protected function fileToString($src)
+    protected function fileToString(array $entry)
     {
-        return sprintf('<script src="%s"></script>', $src);
+        $attributes = $this->toAttributesString($entry);
+        return "<script {$attributes}></script>";
     }
 
-    protected function plainToString($src)
+    protected function plainToString(array $entry)
     {
-        return "<script>{$src}</script>";
+        $src = $entry['src'] ?? '';
+        $attributes = $this->toAttributesString(array_except($entry, 'src'));
+        return "<script {$attributes}>{$src}</script>";
     }
 
 }

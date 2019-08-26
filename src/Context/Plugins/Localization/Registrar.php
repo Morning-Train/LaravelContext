@@ -22,7 +22,7 @@ class Registrar
      */
     protected $providersWerePublished = false;
 
-    public function localize($namespace, array $data = null)
+    public function localize($namespace, $data = null)
     {
         if (is_array($namespace)) {
             $localization = $namespace;

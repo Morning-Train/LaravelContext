@@ -2,30 +2,45 @@
 
 namespace MorningTrain\Laravel\Context\Plugins\Assets;
 
+use Illuminate\Support\Arr;
+
 abstract class Registrar
 {
 
     protected $entries = [];
 
-    public function add($entries, string $type = 'file')
+    protected function toAttributesString(array $array)
+    {
+        $attributes = [];
+
+        foreach ($array as $attribute => $value) {
+            $attributes[] = $value === true ? $attribute : "{$attribute}=\"{$value}\"";
+        }
+
+        return implode(' ', $attributes);
+    }
+
+    public function add($entries, string $method = 'file')
     {
         foreach ((array)$entries as $entry) {
-            array_push($this->entries, [
-                'type' => $type,
-                'src' => $entry
-            ]);
+            if (!is_array($entry)) {
+                $entry = ['src' => $entry];
+            }
+
+            array_push($this->entries, array_merge(['method' => $method], $entry));
         }
 
         return $this;
     }
 
-    public function before($entries, string $type = 'file')
+    public function before($entries, string $method = 'file')
     {
         foreach ((array)$entries as $entry) {
-            array_unshift($this->entries, [
-                'type' => $type,
-                'src' => $entry
-            ]);
+            if (!is_array($entry)) {
+                $entry = ['src' => $entry];
+            }
+
+            array_unshift($this->entries, array_merge(['method' => $method], $entry));
         }
 
         return $this;
@@ -46,16 +61,16 @@ abstract class Registrar
         $html = '';
 
         foreach ($this->entries as $entry) {
-            $type = $entry['type'];
-            $src = $entry['src'];
-            $method = "{$type}ToString";
+            $method = $entry['method'];
+            $renderMethod = "{$method}ToString";
 
-            if (method_exists($this, $method)) {
-                $html .= $this->$method($src);
+            if (method_exists($this, $renderMethod)) {
+                $html .= $this->$renderMethod(Arr::except($entry, 'method'));
             }
         }
 
         return $html;
     }
+
 
 }
