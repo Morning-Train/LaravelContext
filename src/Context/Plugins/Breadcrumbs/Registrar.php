@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\Laravel\Context\Plugins\Store;
+namespace MorningTrain\Laravel\Context\Plugins\Breadcrumbs;
 
 use Illuminate\Routing\Router;
 use MorningTrain\Laravel\Context\Context;
