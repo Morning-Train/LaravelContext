@@ -2,8 +2,8 @@
 
 namespace MorningTrain\Laravel\Context;
 
-use \Exception;
-use \Closure;
+use Closure;
+use Exception;
 
 class ContextService
 {

@@ -2,7 +2,7 @@
 
 namespace MorningTrain\Laravel\Context\Plugins\Menus;
 
-use \Closure;
+use Closure;
 
 class Menu
 {

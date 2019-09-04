@@ -2,7 +2,7 @@
 
 namespace MorningTrain\Laravel\Context\Plugins\Localization;
 
-use \Closure;
+use Closure;
 
 class Registrar
 {

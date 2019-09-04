@@ -18,6 +18,8 @@
     }
   },
   "require": {
-
+      "php": "^7.2",
+      "illuminate/routing": "^5.8|^6.0",
+      "illuminate/support": "^5.8|^6.0"
   }
 }

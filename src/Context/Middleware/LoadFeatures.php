@@ -2,7 +2,7 @@
 
 namespace MorningTrain\Laravel\Context\Middleware;
 
-use \Closure;
+use Closure;
 use MorningTrain\Laravel\Context\Context;
 
 class LoadFeatures
