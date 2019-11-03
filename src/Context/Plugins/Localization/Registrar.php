@@ -71,7 +71,16 @@ class Registrar
 
         foreach ($this->providers as $namespace => $providers) {
             foreach ($providers as $provider) {
-                $this->localize($namespace, $provider());
+                try {
+                    $this->localize($namespace, $provider());
+                } catch (\Exception $exception) {
+                    if(function_exists('report')) {
+                        report($exception);
+                    }
+                    if(app()->isLocal()) {
+                        dd($exception);
+                    }
+                }
             }
         }
 
