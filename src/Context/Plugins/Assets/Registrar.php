@@ -56,6 +56,11 @@ abstract class Registrar
         return $this->before($sources, 'plain');
     }
 
+    public function all()
+    {
+        return $this->entries;
+    }
+
     public function __toString()
     {
         $html = '';
