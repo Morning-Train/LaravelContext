@@ -40,6 +40,18 @@ class Menu
         return $this;
     }
 
+    public function page($page)
+    {
+        if (\Auth::user()->can('access', $page::instance())) {
+            return $this->item(
+                $page::$title,
+                $page::$route
+            );
+        }
+
+        return $this;
+    }
+
     public function group(string $title, $route, Closure $group, array $options = [])
     {
         $children = new Menu();
