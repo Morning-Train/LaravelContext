@@ -1,6 +1,6 @@
 <?php
 
-namespace MorningTrain\Laravel\Context\Plugins\Localization;
+namespace MorningTrain\Laravel\Context\Plugins\Env;
 
 use Closure;
 
@@ -10,7 +10,7 @@ class Registrar
     /**
      * @var array
      */
-    protected $localization = [];
+    protected $env = [];
 
     /**
      * @var array
@@ -22,13 +22,18 @@ class Registrar
      */
     protected $providersWerePublished = false;
 
-    public function localize($namespace, $data = null)
+    public function set($namespace, $data = null)
     {
+
+        if($data instanceof Closure){
+            return $this->setProvider($namespace, $data);
+        }
+
         if (is_array($namespace)) {
-            $localization = $namespace;
+            $env = $namespace;
         } else if (is_string($namespace) && (strlen($namespace) > 0)) {
-            $localization = [];
-            $current = &$localization;
+            $env = [];
+            $current = &$env;
             $path = explode('.', $namespace);
 
             do {
@@ -37,17 +42,17 @@ class Registrar
                 $current = &$current[$key];
             } while (count($path) > 0);
         } else {
-            $localization = $data;
+            $env = $data;
         }
 
-        if (isset($localization)) {
-            $this->localization = array_merge_recursive($this->localization, $localization);
+        if (isset($env)) {
+            $this->env = array_merge_recursive($this->env, $env);
         }
 
         return $this;
     }
 
-    public function provide($namespace, Closure $provider = null)
+    public function setProvider($namespace, $provider = null)
     {
         if ($namespace instanceof Closure) {
             $provider = $namespace;
@@ -72,7 +77,7 @@ class Registrar
         foreach ($this->providers as $namespace => $providers) {
             foreach ($providers as $provider) {
                 try {
-                    $this->localize($namespace, $provider());
+                    $this->set($namespace, $provider());
                 } catch (\Exception $exception) {
                     if(function_exists('report')) {
                         report($exception);
@@ -90,18 +95,13 @@ class Registrar
     public function data()
     {
         $this->publishProviders();
-        return $this->localization;
-    }
 
-    public function __toString()
-    {
-        $localization = $this->data();
         $html = '';
 
-        if (!empty($localization)) {
+        if (!empty($this->env)) {
             $html .= '<script>';
 
-            foreach ($localization as $key => $value) {
+            foreach ($this->env as $key => $value) {
                 $html .= "window.{$key}=" . json_encode($value) . ';';
             }
 
