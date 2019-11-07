@@ -4,14 +4,14 @@ namespace MorningTrain\Laravel\Context\Plugins\Store;
 
 use MorningTrain\Laravel\Context\ContextService;
 use MorningTrain\Laravel\Context\Contracts\Pluginable;
-use MorningTrain\Laravel\Context\Plugins\Localization\LocalizationPlugin;
+use MorningTrain\Laravel\Context\Plugins\Localization\EnvPlugin;
 
 class StorePlugin implements Pluginable
 {
 
     public function register(ContextService $context)
     {
-        $context->plugin(LocalizationPlugin::class);
+        $context->plugin(EnvPlugin::class);
 
         $context->extend('store', function (... $arguments) use ($context) {
             return count($arguments) > 0 ? $this->getRegistrar()->provide(...$arguments) : $this->getRegistrar();

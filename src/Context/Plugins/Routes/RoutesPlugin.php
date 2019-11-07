@@ -4,7 +4,7 @@ namespace MorningTrain\Laravel\Context\Plugins\Routes;
 
 use MorningTrain\Laravel\Context\ContextService;
 use MorningTrain\Laravel\Context\Contracts\Pluginable;
-use MorningTrain\Laravel\Context\Plugins\Localization\LocalizationPlugin;
+use MorningTrain\Laravel\Context\Plugins\Env\EnvPlugin;
 
 class RoutesPlugin implements Pluginable
 {
@@ -12,10 +12,10 @@ class RoutesPlugin implements Pluginable
     public function register(ContextService $context)
     {
         // Require dependencies
-        $context->plugin(LocalizationPlugin::class);
+        $context->plugin(EnvPlugin::class);
 
         // Add localization provider
-        $context->localization()->provide('env.router', function () {
+        $context->env('router', function () {
             $currentRoute = app()->make('router')->getCurrentRoute();
 
             return [

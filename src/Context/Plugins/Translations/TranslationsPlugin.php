@@ -5,7 +5,7 @@ namespace MorningTrain\Laravel\Context\Plugins\Translations;
 use MorningTrain\Laravel\Context\Context;
 use MorningTrain\Laravel\Context\ContextService;
 use MorningTrain\Laravel\Context\Contracts\Pluginable;
-use MorningTrain\Laravel\Context\Plugins\Localization\LocalizationPlugin;
+use MorningTrain\Laravel\Context\Plugins\Localization\EnvPlugin;
 
 class TranslationsPlugin implements Pluginable
 {
@@ -13,7 +13,7 @@ class TranslationsPlugin implements Pluginable
     public function register(ContextService $context)
     {
         // Require dependencies
-        $context->plugin(LocalizationPlugin::class);
+        $context->plugin(EnvPlugin::class);
 
         // Add exporter
         $context->extend('translations', function (...$arguments) {
@@ -29,7 +29,7 @@ class TranslationsPlugin implements Pluginable
             $data[$key] = trans($key);
         }
 
-        Context::localize('env.trans', $data);
+        Context::env('trans', $data);
     }
 
 }
