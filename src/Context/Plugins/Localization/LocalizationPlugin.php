@@ -16,6 +16,15 @@ class LocalizationPlugin implements Pluginable
             return $this->getRegistrar();
         });
 
+        $context->extend('env', function ($value) {
+
+            $key = 'env';
+
+            return $value instanceof \Closure ?
+                $this->getRegistrar()->provide($key, $value) :
+                $this->getRegistrar()->localize($key, $value);
+        });
+
         $context->extend('localize', function ($key, $value) {
             return $value instanceof \Closure ?
                 $this->getRegistrar()->provide($key, $value) :
