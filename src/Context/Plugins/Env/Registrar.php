@@ -3,6 +3,7 @@
 namespace MorningTrain\Laravel\Context\Plugins\Env;
 
 use Closure;
+use Illuminate\Support\Arr;
 
 class Registrar
 {
@@ -92,16 +93,17 @@ class Registrar
         $this->providersWerePublished = true;
     }
 
-    public function data()
+    public function __toString()
     {
-        $this->publishProviders();
+
+        $env = $this->data();
 
         $html = '';
 
-        if (!empty($this->env)) {
+        if (!empty($env)) {
             $html .= '<script>';
 
-            foreach ($this->env as $key => $value) {
+            foreach ($env as $key => $value) {
                 $html .= "window.{$key}=" . json_encode($value) . ';';
             }
 
@@ -109,6 +111,12 @@ class Registrar
         }
 
         return $html;
+    }
+
+    public function data()
+    {
+        $this->publishProviders();
+        return $this->env;
     }
 
 }

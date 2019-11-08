@@ -20,7 +20,7 @@ class EnvPlugin implements Pluginable
             }
 
             if ($key === null && $value === null) {
-                return $this->getRegistrar()->data();
+                return $this->getRegistrar();
             }
 
             if ($key !== 'env') {
