@@ -38,6 +38,11 @@ class ContextService
         return $this->features[$name];
     }
 
+    public function is($name)
+    {
+        return in_array($name, $this->loaded);
+    }
+
     public function register(string $name, string $class)
     {
         $this->features[$name] = $class;
