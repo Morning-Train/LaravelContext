@@ -11,6 +11,11 @@ class ContextService
     /**
      * @var array
      */
+    protected $loaded = [];
+
+    /**
+     * @var array
+     */
     protected $features = [];
 
     /**
@@ -42,6 +47,7 @@ class ContextService
     public function load($name)
     {
         $class = null;
+        $is_feature = false;
 
         if (!$this->featureExists($name)) {
             // Check if class
@@ -50,6 +56,7 @@ class ContextService
             }
         } else {
             $class = $this->getFeatureClass($name);
+            $is_feature = true;
         }
 
         if (is_null($class)) {
@@ -61,6 +68,8 @@ class ContextService
         if (method_exists($feature, 'load')) {
             $feature->load();
         }
+
+        $this->loaded[] = $name;
 
         return $this;
     }
