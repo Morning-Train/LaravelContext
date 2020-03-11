@@ -5,7 +5,7 @@ namespace MorningTrain\Laravel\Context\Plugins\Translations;
 use MorningTrain\Laravel\Context\Context;
 use MorningTrain\Laravel\Context\ContextService;
 use MorningTrain\Laravel\Context\Contracts\Pluginable;
-use MorningTrain\Laravel\Context\Plugins\Localization\EnvPlugin;
+use MorningTrain\Laravel\Context\Plugins\Env\EnvPlugin;
 
 class TranslationsPlugin implements Pluginable
 {
