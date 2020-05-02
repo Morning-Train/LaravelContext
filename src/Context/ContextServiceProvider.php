@@ -32,7 +32,7 @@ class ContextServiceProvider extends ServiceProvider
     public function boot(ContextService $context)
     {
         $this->registerPlugins($context);
-        $this->registerFeatures($context);
+        $this->registerContexts($context);
         $this->loadFeatures($context);
     }
 
@@ -43,7 +43,7 @@ class ContextServiceProvider extends ServiceProvider
         }
     }
 
-    protected function registerFeatures(ContextService $context)
+    protected function registerContexts(ContextService $context)
     {
         foreach ($this->contexts as $name => $class) {
             $context->register($name, $class);
