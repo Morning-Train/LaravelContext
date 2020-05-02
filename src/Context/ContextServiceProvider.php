@@ -2,6 +2,7 @@
 
 namespace MorningTrain\Laravel\Context;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use MorningTrain\Laravel\Context\Events\ContextRegistered;
 use MorningTrain\Laravel\Context\Events\ContextRegistering;
