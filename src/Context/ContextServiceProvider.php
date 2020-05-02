@@ -3,6 +3,8 @@
 namespace MorningTrain\Laravel\Context;
 
 use Illuminate\Support\ServiceProvider;
+use MorningTrain\Laravel\Context\Events\ContextRegistered;
+use MorningTrain\Laravel\Context\Events\ContextRegistering;
 
 class ContextServiceProvider extends ServiceProvider
 {
@@ -31,9 +33,11 @@ class ContextServiceProvider extends ServiceProvider
 
     public function boot(ContextService $context)
     {
+        Event::dispatch(new ContextRegistering($context));
         $this->registerPlugins($context);
         $this->registerContexts($context);
         $this->loadFeatures($context);
+        Event::dispatch(new ContextRegistered($context));
     }
 
     protected function registerPlugins(ContextService $context)
