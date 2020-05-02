@@ -4,6 +4,9 @@ namespace MorningTrain\Laravel\Context;
 
 use Closure;
 use Exception;
+use Illuminate\Support\Facades\Event;
+use MorningTrain\Laravel\Context\Events\ContextLoaded;
+use MorningTrain\Laravel\Context\Events\ContextLoading;
 
 class ContextService
 {
@@ -71,7 +74,17 @@ class ContextService
         $feature = new $class;
 
         if (method_exists($feature, 'load')) {
+
+            if ($is_feature === true) {
+                Event::dispatch(new ContextLoading($name, $feature));
+            }
+
             $feature->load();
+
+            if ($is_feature === true) {
+                Event::dispatch(new ContextLoaded($name, $feature));
+            }
+
         }
 
         $this->loaded[] = $name;
