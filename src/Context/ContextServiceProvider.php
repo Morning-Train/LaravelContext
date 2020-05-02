@@ -2,10 +2,7 @@
 
 namespace MorningTrain\Laravel\Context;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use MorningTrain\Laravel\Context\Events\ContextRegistered;
-use MorningTrain\Laravel\Context\Events\ContextRegistering;
 
 class ContextServiceProvider extends ServiceProvider
 {
@@ -32,33 +29,31 @@ class ContextServiceProvider extends ServiceProvider
         });
     }
 
-    public function boot(ContextService $context)
+    public function boot()
     {
-        Event::dispatch(new ContextRegistering($context));
-        $this->registerPlugins($context);
-        $this->registerContexts($context);
-        $this->loadFeatures($context);
-        Event::dispatch(new ContextRegistered($context));
+        $this->registerPlugins();
+        $this->registerContexts();
+        $this->loadFeatures();
     }
 
-    protected function registerPlugins(ContextService $context)
+    protected function registerPlugins()
     {
         foreach ($this->plugins as $plugin) {
-            $context->plugin($plugin);
+            Context::plugin($plugin);
         }
     }
 
-    protected function registerContexts(ContextService $context)
+    protected function registerContexts()
     {
         foreach ($this->contexts as $name => $class) {
-            $context->register($name, $class);
+            Context::register($name, $class);
         }
     }
 
-    protected function loadFeatures(ContextService $context)
+    protected function loadFeatures()
     {
         foreach ($this->load as $feature) {
-            $context->load($feature);
+            Context::load($feature);
         }
     }
 

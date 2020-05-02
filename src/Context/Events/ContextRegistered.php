@@ -7,7 +7,7 @@ class ContextRegistered
 
     public $context;
 
-    public function __construct($context)
+    public function __construct()
     {
         $this->context = $context;
     }
