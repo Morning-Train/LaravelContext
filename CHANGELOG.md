@@ -5,7 +5,7 @@
 - Added historical changelog to GIT repo
 - In context service provider, renamed registerFeatures to registerContexts
 - Added ContextLoading and ContextLoaded events
-- Added ContextRegistering and ContextRegistered events
+- Moved context registering to register method in service provider
 
 ## [2.2.1 (2019-03-11)](https://github.com/Morning-Train/LaravelContext/compare/2.2.0...2.2.1)
 

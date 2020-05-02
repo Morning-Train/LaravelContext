@@ -27,13 +27,11 @@ class ContextServiceProvider extends ServiceProvider
         $this->app->singleton(ContextService::class, function () {
             return new ContextService();
         });
-    }
 
-    public function boot()
-    {
         $this->registerPlugins();
         $this->registerContexts();
         $this->loadFeatures();
+
     }
 
     protected function registerPlugins()
