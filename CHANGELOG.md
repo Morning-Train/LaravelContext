@@ -1,5 +1,9 @@
 # Release Notes
 
+## [2.4.1 (2020-05-03)](https://github.com/Morning-Train/LaravelContext/compare/2.4.0...2.4.1)
+
+- Added contexts booting and booted events
+
 ## [2.4.0 (2020-05-03)](https://github.com/Morning-Train/LaravelContext/compare/2.3.0...2.4.0)
 
 - Added contexts booting and booted events
