@@ -19,6 +19,11 @@ class ContextService
     /**
      * @var array
      */
+    protected $loaded_features = [];
+
+    /**
+     * @var array
+     */
     protected $features = [];
 
     /**
@@ -88,8 +93,20 @@ class ContextService
         }
 
         $this->loaded[] = $name;
+        $this->loaded_features[$name] = $feature;
 
         return $this;
+    }
+
+    public function boot()
+    {
+        if (is_array($this->loaded_features) && !empty($this->loaded_features)) {
+            foreach ($this->loaded_features as $feature) {
+                if (method_exists($feature, 'boot')) {
+                    $feature->boot();
+                }
+            }
+        }
     }
 
     public function extend(string $methodName, Closure $method)
