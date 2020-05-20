@@ -1,5 +1,11 @@
 # Release Notes
 
+## [2.5.0 (2020-05-20)](https://github.com/Morning-Train/LaravelContext/compare/2.4.1...2.5.0)
+
+- An instance of the ContextService are provided to the constructor of loaded contexts.
+- Add ContextProvider class that all Contexts should extend going forwards.
+- LoadContexts middleware added to be used with ContextProviders
+
 ## [2.4.1 (2020-05-03)](https://github.com/Morning-Train/LaravelContext/compare/2.4.0...2.4.1)
 
 - Added contexts booting and booted events
