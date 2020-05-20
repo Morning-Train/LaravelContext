@@ -79,27 +79,28 @@ class ContextService
         $feature = new $class($this);
 
         if (method_exists($feature, 'load')) {
-
-            if ($is_feature === true) {
-                Event::dispatch(new ContextLoading($name, $feature));
-            }
-
             $feature->load();
-
-            if ($is_feature === true) {
-                Event::dispatch(new ContextLoaded($name, $feature));
-            }
-
         }
 
         $this->loaded[] = $name;
-        $this->loaded_features[$name] = $feature;
+        $this->loaded_features[$class] = $feature;
 
         return $this;
     }
 
-    public function boot()
+    public function boot($feature_class = null)
     {
+        if($feature_class !== null) {
+            if (is_array($this->loaded_features) && isset($this->loaded_features[$feature_class])) {
+                $feature = $this->loaded_features[$feature_class];
+                if (method_exists($feature, 'boot')) {
+                    $feature->boot();
+                }
+            }
+
+            return;
+        }
+
         if (is_array($this->loaded_features) && !empty($this->loaded_features)) {
             foreach ($this->loaded_features as $feature) {
                 if (method_exists($feature, 'boot')) {
