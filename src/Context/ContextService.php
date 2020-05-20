@@ -71,7 +71,7 @@ class ContextService
             throw new Exception(sprintf('Context feature `%s` is not defined.', $name));
         }
 
-        $feature = new $class;
+        $feature = new $class($this);
 
         if (method_exists($feature, 'load')) {
 
