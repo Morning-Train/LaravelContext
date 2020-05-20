@@ -1,5 +1,9 @@
 # Release Notes
 
+## [2.6.0 (2020-05-20)](https://github.com/Morning-Train/LaravelContext/compare/2.5.0...2.6.0)
+
+- Moved files one directory up to fix composer issue.
+
 ## [2.5.0 (2020-05-20)](https://github.com/Morning-Train/LaravelContext/compare/2.4.1...2.5.0)
 
 - An instance of the ContextService are provided to the constructor of loaded contexts.

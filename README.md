@@ -205,8 +205,8 @@ class Assets extends ContextProvider
     public static $plugins = [
         AssetsPlugin::class
     ];
-
-	protected $manifest = '';
+    
+    protected $manifest = '';
 
     public function load()
     {
