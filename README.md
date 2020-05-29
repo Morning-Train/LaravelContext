@@ -261,3 +261,15 @@ It will be an object representing the entire environment built in the loaded con
 
 # Credits
 This package is developed and actively maintained by [Morningtrain](https://morningtrain.dk).
+
+<!-- language: lang-none -->
+     _- _ -__ - -- _ _ - --- __ ----- _ --_  
+    (         Morningtrain, Denmark         )
+     `---__- --__ _ --- _ -- ___ - - _ --_ ´ 
+         o                                   
+        .  ____                              
+      _||__|  |  ______   ______   ______ 
+     (        | |      | |      | |      |
+     /-()---() ~ ()--() ~ ()--() ~ ()--() 
+    --------------------------------------
+
