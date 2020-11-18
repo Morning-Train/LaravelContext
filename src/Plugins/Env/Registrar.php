@@ -115,7 +115,14 @@ class Registrar
 
     public function data()
     {
-        $this->publishProviders();
+        if(function_exists('debugbar')) {
+            debugbar()->measure("Building ENV from providers", function() {
+                $this->publishProviders();
+            });
+        } else {
+            $this->publishProviders();
+        }
+
         return $this->env;
     }
 
