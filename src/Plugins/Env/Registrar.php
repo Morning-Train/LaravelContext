@@ -92,8 +92,21 @@ class Registrar
 
         foreach ($this->providers as $namespace => $providers) {
             foreach ($providers as $provider) {
+
                 try {
-                    $this->set($namespace, $provider());
+                    $name = 'unknown provider';
+
+                    if($provider instanceof Closure) {
+                        $reflectionClosure = new \ReflectionFunction($provider);
+                        $reflectionClass = $reflectionClosure->getClosureScopeClass();
+                        if($reflectionClass) {
+                            $name = $reflectionClass->getName();
+                        }
+                    }
+
+                    $this->measure("Building $namespace ENV from $name", function() use($namespace, $provider) {
+                        $this->set($namespace, $provider());
+                    });
                 } catch (\Exception $exception) {
                     if(function_exists('report')) {
                         report($exception);
@@ -128,15 +141,22 @@ class Registrar
         return $html;
     }
 
-    public function data()
+    protected function measure($label, $closure)
     {
         if(function_exists('debugbar')) {
-            debugbar()->measure("Building ENV from providers", function() {
-                $this->publishProviders();
+            debugbar()->measure($label, function() use($closure) {
+                $closure();
             });
         } else {
-            $this->publishProviders();
+            $closure();
         }
+    }
+
+    public function data()
+    {
+        $this->measure("Building ENV from providers", function() {
+            $this->publishProviders();
+        });
 
         return $this->env;
     }
