@@ -8,23 +8,15 @@ use MorningTrain\Laravel\Context\Plugins\Assets\StylesheetRegistrar;
 trait HasAssetsContext
 {
 
-    /**
-     * @var ScriptRegistrar
-     */
-    protected static $scriptRegistrar;
+    protected static ScriptRegistrar $scriptRegistrar;
+    protected static StylesheetRegistrar $stylesheetRegistrar;
 
-    /**
-     * @var StylesheetRegistrar
-     */
-    protected static $stylesheetRegistrar;
-
-
-    protected static function getScriptRegistrar()
+    protected static function getScriptRegistrar(): ScriptRegistrar
     {
         return static::$scriptRegistrar ?: (static::$scriptRegistrar = new ScriptRegistrar());
     }
 
-    protected static function getStylesheetRegistrar()
+    protected static function getStylesheetRegistrar(): StylesheetRegistrar
     {
         return static::$stylesheetRegistrar ?: (static::$stylesheetRegistrar = new StylesheetRegistrar());
     }
