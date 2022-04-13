@@ -2,6 +2,7 @@
 
 namespace MorningTrain\Laravel\Context\Traits;
 
+use MorningTrain\Laravel\Context\Context;
 use MorningTrain\Laravel\Context\Plugins\Routes\Registrar;
 
 trait HasRoutesContext
@@ -13,7 +14,7 @@ trait HasRoutesContext
         return static::$routesRegistrar ?: (static::$routesRegistrar = new Registrar());
     }
 
-    public static function router(...$arguments): array
+    public static function getRouterData(): array
     {
         $currentRoute = app()->make('router')->getCurrentRoute();
 
@@ -24,6 +25,13 @@ trait HasRoutesContext
             'currentParameters' => (object) array_merge($currentRoute->parameters, request()->query()),
             'routes' => static::getRoutesRegistrar()->getRoutesData()
         ];
+    }
+
+    public static function setRouterInEnv()
+    {
+        Context::env('router', function() {
+            return Context::getRouterData();
+        });
     }
 
     public static function routes(...$arguments): void
