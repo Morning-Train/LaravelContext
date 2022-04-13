@@ -6,7 +6,7 @@ use MorningTrain\Laravel\Context\Plugins\Routes\Registrar;
 
 trait HasRoutesContext
 {
-    protected static Registrar $routesRegistrar;
+    protected static ?Registrar $routesRegistrar = null;
 
     protected static function getRoutesRegistrar(): Registrar
     {

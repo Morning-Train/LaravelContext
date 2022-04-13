@@ -7,7 +7,7 @@ use MorningTrain\Laravel\Context\Plugins\Views\Registrar;
 trait HasViewsContext
 {
 
-    protected static Registrar $viewsRegistrar;
+    protected static ?Registrar $viewsRegistrar = null;
 
     protected static function getViewsRegistrar(): Registrar
     {

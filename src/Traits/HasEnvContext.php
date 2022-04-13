@@ -7,7 +7,7 @@ use MorningTrain\Laravel\Context\Plugins\Env\Registrar;
 trait HasEnvContext
 {
 
-    protected static $envRegistrar;
+    protected static ?Registrar $envRegistrar = null;
 
     protected static function getEnvRegistrar(): Registrar
     {

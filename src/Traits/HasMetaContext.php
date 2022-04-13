@@ -6,7 +6,7 @@ use MorningTrain\Laravel\Context\Plugins\Meta\Registrar;
 
 trait HasMetaContext
 {
-    protected static Registrar $metaRegistrar;
+    protected static ?Registrar $metaRegistrar = null;
 
     protected static function getMetaRegistrar(): Registrar
     {

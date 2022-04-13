@@ -7,7 +7,7 @@ use MorningTrain\Laravel\Context\Plugins\Breadcrumbs\Registrar;
 trait HasBreadcrumbsContext
 {
 
-    protected static Registrar $breadcrumbsRegistrar;
+    protected static ?Registrar $breadcrumbsRegistrar = null;
 
     protected static function getBreadcrumbsRegistrar(): Registrar
     {
