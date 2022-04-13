@@ -31,16 +31,8 @@ class ContextServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->registerPlugins();
         $this->registerContexts();
         $this->loadFeatures();
-    }
-
-    protected function registerPlugins()
-    {
-        foreach ($this->plugins as $plugin) {
-            Context::plugin($plugin);
-        }
     }
 
     protected function registerContexts()
