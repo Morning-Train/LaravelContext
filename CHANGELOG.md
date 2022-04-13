@@ -1,5 +1,11 @@
 # Release Notes
 
+## [3.0.3 (2022-05-20)](https://github.com/Morning-Train/LaravelContext/compare/2.8.6...3.0.3)
+
+- Routes will not automatically be added to ENV - Call `Context::setRouterInEnv();` in base context
+- Plugin support has been moved and existing plugins has been moved to traits on the base Context - Giving improved IDE and PHPStan support
+- Since plugin support has been removed, the plugins array in ContextServiceProvider and any ContextProvider classes should be removed.
+
 ## [2.6.0 (2020-05-20)](https://github.com/Morning-Train/LaravelContext/compare/2.5.0...2.6.0)
 
 - Moved files one directory up to fix composer issue.

@@ -25,27 +25,9 @@ namespace App\Providers;
 use App\Context\BaseContext;
 use App\Context\App\AppContext;
 use MorningTrain\Laravel\Context\ContextServiceProvider as ServiceProvider;
-use MorningTrain\Laravel\Context\Plugins\Assets\AssetsPlugin;
-use MorningTrain\Laravel\Context\Plugins\Env\EnvPlugin;
-use MorningTrain\Laravel\Context\Plugins\Menus\MenusPlugin;
-use MorningTrain\Laravel\Context\Plugins\Meta\MetaPlugin;
-use MorningTrain\Laravel\Context\Plugins\Routes\RoutesPlugin;
 
 class ContextServiceProvider extends ServiceProvider
 {
-
-    /**
-     * Plugins to load
-     *
-     * @var array
-     */
-    protected $plugins = [
-        AssetsPlugin::class,
-        EnvPlugin::class,
-        MenusPlugin::class,
-        RoutesPlugin::class,
-        MetaPlugin::class
-    ];
 
     /**
      * Features to define
@@ -69,102 +51,17 @@ class ContextServiceProvider extends ServiceProvider
 }
 ```
 
-It contains 3 properties that should be configured. 
-
-Plugins are extra functionality that can be added which extends the normal behaviour of the context system.
-
-The plugins displayed above are the typically used plugins - they are all shipped with the context package. 
-Is is possible to develop project-specific plugins and hook them up here.
+It contains two properties that should be configured.
 
 The *contexts* property defines and array of all contexts available in the system. They will be referenced by the configured name.
 There will be a definition of the context classsed later.
 
 *load* defines the contexts that should be automatically loaded. Contexts need to be defined here or loaded manually in order to provide any functionality.
 
-### Context class
-This is an example of a basic AppContext class.
-
-
-```php
-<?php
-
-namespace App\Context\App;
-
-use MorningTrain\Laravel\Context\Context;
-
-class AppContext
-{
-
-    public function load()
-    {
-        // Provide the app name to ENV
-        Context::env(function () {
-            return [
-                'app' => [
-                    'name' => config('app.name')
-                ]
-            ];
-        });
-
-        // Load assets
-        Context::load(Assets::class);
-
-    }
-
-}
-
-```
-
-Anything in the array returned by the closure added to the *env* method will be merged into the *env* variable for that context.
-It can be used to provide a set of variables to for instance JavaScript.
-
-
-Note the last call to `Context::load(Asset::class)`.
-The *Asset* class is a simple class containing a load method. 
-It is not essentially needed but is a way to split the context loading into multiple smaller and more maintainable classes.
-
-This is a basic example of an *Asset* class.
-
-```php
-<?php
-
-namespace App\Context\App;
-
-use MorningTrain\Laravel\Context\Context;
-
-class Assets
-{
-
-    protected $manifest = '';
-
-    public function load()
-    {
-        Context::stylesheets([
-            asset(mix('css/app.css', $this->manifest))
-        ]);
-
-        Context::scripts([
-            asset(mix('js/manifest.js', $this->manifest)),
-            asset(mix('js/vendor.js', $this->manifest)),
-            asset(mix('js/app.js', $this->manifest))
-        ]);
-    }
-
-}
-```
-
-This is where stylesheets and JavaScripts are configured and made available to the HTML blade view. 
-This allows for more dynamic loading of scripts and keeps the base HTML templates clean.
-
 ### Context provider
-ContextProviders were added in version 2.5.0 and is an updated approach to structuring the context class.
 
-New features include the ability to register plugins directly from any ContextProvider, meaning that plugins can be removed from the ContextServiceProvider.
-This shift away from registering the plugins in the service provider will leave plugin dependency to the classes actually implementing them.
-
-The *Asset* example above and similar classes are now called *partials* and can be automatically loaded from any ContextProvider.
-
-It is recommended that these partials also extends the `ContextProvider` base class to have support for plugins.   
+With Context Providers, it is possible to have partials. 
+Partials should extend the `ContextProvider` base class to have support for plugins.   
 
 Note that it is encouraged to split the context class up into partials instead of having custom logic inside the context class itself. 
 
@@ -202,10 +99,6 @@ use MorningTrain\Laravel\Context\Plugins\Assets\AssetsPlugin;
 class Assets extends ContextProvider
 {
 
-    public static $plugins = [
-        AssetsPlugin::class
-    ];
-    
     protected $manifest = '';
 
     public function load()
