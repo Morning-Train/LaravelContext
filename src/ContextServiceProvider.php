@@ -10,24 +10,12 @@ class ContextServiceProvider extends ServiceProvider
     /**
      * @var array
      */
-    protected $plugins = [];
-
-    /**
-     * @var array
-     */
     protected $contexts = [];
 
     /**
      * @var array
      */
     protected $load = [];
-
-    public function register()
-    {
-        $this->app->singleton(ContextService::class, function () {
-            return new ContextService();
-        });
-    }
 
     public function boot()
     {
