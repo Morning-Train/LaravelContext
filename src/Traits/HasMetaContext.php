@@ -13,7 +13,7 @@ trait HasMetaContext
         return static::$metaRegistrar ?: (static::$metaRegistrar = new Registrar());
     }
 
-    public static function meta(...$arguments): Registrar
+    public static function meta(...$arguments)
     {
         if (count($arguments) === 0) {
             return static::getMetaRegistrar();
