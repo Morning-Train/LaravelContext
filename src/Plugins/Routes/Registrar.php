@@ -39,11 +39,22 @@ class Registrar
 
             foreach ($this->routes as $pattern) {
                 if (fnmatch($pattern, $route->action['as'])) {
+
+                    $compiledRoute = $route->getCompiled();
+
+                    if(!$compiledRoute) {
+                        try {
+                            $compiledRoute = $route->toSymfonyRoute()->compile();
+                        } catch (\Exception $e) {
+                            $compiledRoute = null;
+                        }
+                    }
+
                     $data[$route->action['as']] = [
                         'name' => $route->action['as'],
                         'methods' => $route->methods,
                         'uri' => $route->uri,
-                        'variables' => ($route->getCompiled())?$route->getCompiled()->getVariables():[]
+                        'variables' => $compiledRoute ? $compiledRoute->getVariables():[]
                     ];
                 }
             }
